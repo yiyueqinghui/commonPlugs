@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>绘制路径</title>
+   
+</head>
+<body>
+<!--使用画布，必须提前定义画布的大小，即width,height(宽高的默认单位时px)-->
+	<canvas id="drawing" width="200" height="200">
+		不支持画布功能（当浏览器不支持canvas时，会显示canvas标签里边的内容）
+	</canvas>
+</body>
+ <script type="text/javascript">
+    var drawing = document.getElementById('drawing');
+
+//  确定浏览器是否支持canvas元素
+    if(drawing.getContext){
+//     取得绘图的上下文
+    	var context =drawing.getContext('2d');
+//  	开始路径
+        context.beginPath();
+
+//      绘制外圆
+        context.arc(100,100,99,2*Math.PI,false);
+        
+//      绘制内圆
+        context.moveTo(194,100);   
+//          注意事项1：如果不把绘图游标移动到绘制内圆的起点，
+//              开始绘制内圆时，就从上一点（这里也就是moveTo移动后的点）到
+//              绘制内圆的起点（内圆最右侧的那一点就是系统默认的绘制圆形的起点）
+//              这两点中间就会出现一条不必要的直线。
+//          注意实现2：如果不移动路径(moveTo),也就是没有context.moveTo(194,100)的话,
+//                   内外两个圆最右侧的那一点之间就会出现一条额外的线条.但是如果移动后的路径不是内圆的起点的话，
+//                   当绘制内圆时也会出现一条额外的线条,比如,可以用   context.moveTo(100,30)测试下
+        context.arc(100,100,94,2*Math.PI,false);
+        
+//      绘制分针
+        context.moveTo(100,100);
+        context.lineTo(100,15);
+        
+//      绘制时针
+        context.moveTo(100,100);
+        context.lineTo(45,90);
+        
+//      描边路径
+        context.stroke();                 //如果不描边或填充，图形就不会显示出来  
+//                                          stroke() 路径结束后描边;  fill() 路径结束后填充
+        
+        
+    
+    
+    }
+     		
+ </script>
+</html>

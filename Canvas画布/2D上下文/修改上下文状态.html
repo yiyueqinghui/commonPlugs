@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>跟踪上下文状态变换</title>
+   
+</head>
+<body>
+<!--使用画布，必须提前定义画布的大小，即width,height(宽高的默认单位时px)-->
+	<canvas id="drawing" width="300" height="300">
+		不支持画布功能（当浏览器不支持canvas时，会显示canvas标签里边的内容）
+	</canvas>
+	<div>
+<!--跟踪上下文状态变换的两大方法-->
+		save()       保存当前设置
+		restore()    向前一级，恢复之前的状态
+	</div>
+</body>
+ <script type="text/javascript">
+    var drawing = document.getElementById('drawing');
+
+//  确定浏览器是否支持canvas元素
+    if(drawing.getContext){
+//     取得绘图的上下文
+    	var context =drawing.getContext('2d');
+    
+        context.fillStyle = "red";
+        context.save();
+        
+        context.fillStyle = "aquamarine";
+        context.translate(100,100);
+        context.save();
+        
+//      修改了fillStyle,但是translate被继承了下来
+        context.fillStyle = "black";
+        context.fillRect(0,0,100,100);
+        
+//      restore()向上一级,找到了fillStyle = "aquamarine"和translate
+        context.restore();
+        context.fillRect(10,10,100,100);
+
+//      在原来的上下环境中再向上一级,找到了context.fillStyle = "red",此时这环境中没有translate
+        context.restore();
+        context.fillRect(0,0,100,100);
+    }
+     		
+ </script>
+</html>
