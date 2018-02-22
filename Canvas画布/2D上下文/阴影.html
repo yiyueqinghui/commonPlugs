@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>绘制阴影</title>
+   
+</head>
+<body>
+<!--使用画布，必须提前定义画布的大小，即width,height(宽高的默认单位时px)-->
+	<canvas id="drawing" width="200" height="200">
+		不支持画布功能（当浏览器不支持canvas时，会显示canvas标签里边的内容）
+	</canvas>
+	<div>
+		  
+	</div>
+</body>
+ <script type="text/javascript">
+    var drawing = document.getElementById('drawing');
+
+//  确定浏览器是否支持canvas元素
+    if(drawing.getContext){
+//     取得绘图的上下文
+    	var context =drawing.getContext('2d');
+        
+        context.shadowOffsetX = 5;
+        context.shadowOffsetY = 4;
+        context.shadowBlur = 4;                      //模糊的像素数
+        context.shadowColor = "rgba(0,0,0,.6)";      //阴影颜色
+        
+//      绘制红色矩形
+        context.fillStyle = "red";
+        context.fillRect(10,10,50,50);
+        
+//      绘制蓝色矩形
+        context.fillStyle ="blue";
+        context.fillRect(100,100,50,50);
+        
+    }
+     		
+ </script>
+</html>

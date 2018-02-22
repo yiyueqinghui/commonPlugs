@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+   
+</head>
+<body>
+<!--使用画布，必须提前定义画布的大小，即width,height(宽高的默认单位时px)-->
+	<canvas id="drawing" width="200" height="200">
+		不支持画布功能（当浏览器不支持canvas时，会显示canvas标签里边的内容）
+	</canvas>
+</body>
+ <script type="text/javascript">
+    var drawing = document.getElementById('drawing');
+
+//  确定浏览器是否支持canvas元素
+    if(drawing.getContext){
+//     取得绘图的上下文
+    	var context =drawing.getContext('2d');
+//      为下边图形填充颜色
+    	context.fillStyle = "#0000ff";
+//  	为下边图形描绘边框
+    	context.strokeStyle = "red";
+    }
+     		
+ </script>
+</html>
