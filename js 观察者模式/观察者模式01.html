@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>观察者模式（发布  订阅）</title>
+	</head>
+
+	<body>
+		<h4>案例</h4>
+		<p>
+			举个例子： 你去一家公司应聘，谈了一顿下来，hr跟你说:"好了，你回去等通知吧！"。 这个时候，1.你会问公司的电话，然后每天打过去问一遍结果 2.把自己的手机号留给hr，然后等他给你打电话 相信很多时候呢，大家都是选择了后者。 万一你每天给hr打电话弄烦他了，或许他本来打算招你的，现在也不再打算再鸟你啦！ 那么这个时候，hr就相当于一个发布者，而你就是一个订阅者啦！ 好吧，大部分叫你回去等消息的就等于没救啦...... 我还遇到过一个如果你没被录取，就连通知都不通知你的公司！
+		</p>
+	</body>
+	
+	<script type="text/javascript">
+		var event = {}; //发布者（hr）
+		event.clietList = {}; //发布者的缓存列表（应聘者列表）
+
+		event.listen = function(key,fn) {  //增加订阅者函数
+			if(!this.clietList[key]){
+				this.clietList[key] = [];
+			}
+			this.clietList[key].push(fn);
+		};
+
+		event.trigger = function() {   //发布消息函数
+			var key = Array.prototype.shift.call(arguments);
+			var fns = this.clietList[key];
+
+			for(var i = 0; i < fns.length; i++) {
+				var fn = fns[i];				
+				fn.apply(this, arguments);
+			}
+		};
+        
+		        //小强订阅了这个消息。
+		event.listen('web前端', fn1 = function(name,time) {
+		    console.log('姓名: '+ name);
+		    console.log('正式上班时间：' + time);
+		});
+		
+		       //大大强订阅了这个消息
+		event.listen('php', fn2 = function(name,time) {
+		    console.log('姓名：'+ name);
+		    console.log('正式上班时间：' + time);
+		});
+ 
+  
+		event.trigger('web前端','小强', '2016/10'); //姓名：小强   正式上班时间：2016/10  
+        event.trigger('php','大大强', '2016/15'); //姓名：大大强   正式上班时间：2016/15   
+		
+		
+	</script>
+	
+	
+
+</html>

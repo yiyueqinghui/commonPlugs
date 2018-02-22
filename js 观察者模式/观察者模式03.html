@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>观察者模式03（订阅 发布 取消）</title>
+	</head>
+
+	<body>
+	    <h4>
+		   创建一个全局对象来实现观察者模式，
+           使用闭包实现私有变量，仅暴露必须的API给使用者
+		</h4>
+	</body>
+	<script>
+	var event = (function() {
+    var clietList = {}; //发布者的缓存列表（应聘者列表）
+
+    var listen = function(key, fn) { //增加订阅者函数
+        if (!this.clietList[key]) {
+            this.clietList[key] = [];
+        }
+        this.clietList[key].push(fn);
+    };
+
+    var trigger = function() { //发布消息函数
+        var key = Array.prototype.shift.call(arguments),
+            fns = this.clietList[key];
+        for (var i = 0; i < fns.length; i++) {
+            var fn = fns[i];
+            fn.apply(this, arguments);
+        }
+    };
+
+    var remove = function(key, fn) {
+        var fns = this.clietList[key];
+        if (!fns) {
+            return false;
+        }
+        if (!fn) { //如果没有传入fn回调函数，直接取消key对应消息的所有订阅
+            this.clietList[key] = [];
+        } else {
+            for (var i = 0; i < fns.length; i++) { //遍历回调函数列表
+                var _fn = fns[i];
+                if (_fn === fn) {
+                    fns.splice(i, 1); //删除订阅者的回调函数
+                }
+            }
+        }
+    };
+    
+    return{
+	    clietList:clietList,
+        listen:listen,
+        trigger:trigger,
+        remove:remove
+    }
+})();
+    
+	//小明订阅了js
+	event.listen('js',fn1=function(name,time){
+	   console.log('小明');
+	   console.log(name,  time);
+	})
+	
+	//小小明订阅了js
+	event.listen('js',fn2=function(name,time){
+	   console.log('小小明');
+	   console.log(name,  time);
+	})
+	
+	//大明订阅了php
+	event.listen('php',fn3=function(name,time){
+	   console.log('大明');
+	   console.log(name,  time);
+	})
+	
+	//小明取消了订阅
+	//event.remove('js',fn1);
+	
+	event.trigger('js','黎明前的黑暗发布时间','2017/12/13');
+
+
+    
+	</script>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>多行隐藏</title>
+	</head>
+	<style>
+		/*方法一  利用伪类选择器  结合 背景*/
+		.one{
+			width:200px;
+			position: relative;
+			line-height: 1.4em;              /*控制行数*/
+			height:4.2em;             
+			overflow: hidden;
+		}
+		.one:after{
+			content:"...";
+			font-weight: bold;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			padding:0px 20px 1px 45px;
+			background: -webkit-linear-gradient(left, transparent, #fff 55%);
+			background: -o-linear-gradient(right, transparent, #fff 55%);
+			background: -moz-linear-gradient(right, transparent, #fff 55%);
+			background: linear-gradient(to right, transparent, #fff 55%);
+		}
+		
+		
+		/*方法二  伪类选择器结合background覆盖*/
+		.two{
+			width:200px;
+			position: relative;
+			line-height: 1.4em;              /*控制行数*/
+			height:4.2em;             
+			overflow: hidden;
+		}
+		.two:after{
+			width: 35px;
+			content:"...";
+			background: #FFFFFF;
+			font-weight: bold;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			z-index: 100;
+		}
+		
+		/*方法三  line-clamp和text-overflow: ellipsis;*/
+		.three{
+			width:200px;
+		    height: 34px;
+		    line-height: 17px;
+		    box-sizing: border-box;
+		    display: -webkit-box;
+		    -webkit-line-clamp: 2;
+		    -webkit-box-orient: vertical;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		}
+	</style>
+	<body>
+		<p class="one">
+			卑鄙是卑鄙者的通行证，高尚是高尚者的墓志铭。北岛《回答》 看北岛就是从这两句诗开始的，高尚者已死，只剩卑鄙者在世间横行。 本文为读 lodash 源码的第一篇，后续文章会更新到这个仓库中，欢迎 star： "pocket lodash" gitbook也会同步仓库的更新，
+		</p>
+		
+		<p class="two">
+			卑鄙是卑鄙者的通行证，高尚是高尚者的墓志铭。北岛《回答》 看北岛就是从这两句诗开始的，高尚者已死，只剩卑鄙者在世间横行。 本文为读 lodash 源码的第一篇，后续文章会更新到这个仓库中，欢迎 star： "pocket lodash" gitbook也会同步仓库的更新，
+		</p>
+		
+		<p class="three">
+			卑鄙是卑鄙者的通行证，高尚是高尚者的墓志铭。北岛《回答》 看北岛就是从这两句诗开始的，高尚者已死，只剩卑鄙者在世间横行。 本文为读 lodash 源码的第一篇，后续文章会更新到这个仓库中，欢迎 star： "pocket lodash" gitbook也会同步仓库的更新，
+		</p>
+	</body>
+</html>
