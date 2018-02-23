@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		/*此方法文本也有透明度*/
+		div{
+			width: 100px;
+			height: 100px;
+			background:rgb(67,67,66);
+			color: #000000;
+			opacity: .7;
+			filter: alpha(opacity=70);
+		}
+		
+		/*rgba()与普通的透明,背景不一样的地方是,其标签内的文本不透明，
+		 * 而分开添加背景，透明就会是的标签内的文本也变透明*/
+		
+		/*标签内部再套个标签,让其相对定位,脱离标准流,不受背景透明的控制*/
+		p{
+			width: 100px;
+			height: 100px;
+			color: #000000;
+			background:rgba(67,67,66,.7) !important;   /*实现FF背景透明，文字不透明*/
+			background:gray;                           /*实现IE背景透明*/
+			filter: alpha(opacity=70);
+		}
+		p span{
+			position: relative;                     /*实现IE文字不透明*/     
+		}
+	</style>
+	<body>
+		<div>
+			天下是
+		</div>
+		<p>
+			<span>天下是</span>
+		</p>
+	</body>
+</html>

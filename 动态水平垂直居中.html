@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>动态垂直水平对齐</title>
+    <style>
+    /*方法一    display:table-cell + vertical-align + text-align*/
+        #container{
+            width:100vw;
+            height:45vh;
+            background-color: gray;
+            color: #ffffff;
+            display: table-cell;
+            vertical-align:middle;
+            text-align: center;
+        }
+        
+    
+    
+    </style>
+    
+</head>
+<body>
+	<div id="container">
+	    <p>DOUBLE Line</p>
+	    <p class="two">DOUBLE Line</p>
+	    <button id="addLine">添加一行</button>
+	</div>
+	
+	
+	<nav role='navigation' class="nav-inline-block">
+	  <ul>
+	    <li><a href="#">Home</a></li>
+	    <li><a href="#">About</a></li>
+	    <li><a href="#">Clients</a></li>
+	    <li><a href="#">Contact Us</a></li>
+	  </ul>
+	</nav>
+</body>
+<script>
+    var add = document.getElementById('addLine'),
+        con = document.getElementById('container');
+    add.addEventListener('click',function(){
+        var p = document.createElement('p');
+        p.innerText = "添加一行的内容";
+        con.insertBefore(p,add);       
+    },false)
+
+
+
+</script>
+
+
+
+</html>

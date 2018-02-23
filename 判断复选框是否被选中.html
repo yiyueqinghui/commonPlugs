@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="checkbox" onclick="check()" />
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+	<script>
+		function check(){
+//			方法一， is(":checked")判断当前点击是选中,还是不选中
+//	     	if($("input").is(":checked")){
+//	     		console.log("true")
+//	     	}else{
+//	     		console.log("false")
+//	     	};
+//	                 方法二,($("input").prop("checked")判断当前点击是选中,还是不选中
+	     	if($("input").prop("checked")){
+	     		console.log("true")
+	     	}else{
+	     		console.log("false")
+	     	};
+		}
+
+	</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>table-cell实现的圣杯布局</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				height: 100%;
+			}
+			
+			body {
+				background:lightgray;
+				color: black;
+			}
+			
+			.wrapper {
+				height: 100%;
+				display: table;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.header {
+				display: table-row;
+				height: 1px;
+				background:yellow;
+			}
+			
+			.main {
+				height: 100%;
+				display: table;
+				width: 100%;
+			}
+			
+			.box {
+				display: table-cell;
+			}
+			
+			.sidebar {
+				width: 100px;
+				background: orange;
+			}
+			
+			.footer {
+				display: table-row;
+				height: 1px;
+				background: green;
+				color:balck;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">头部</div>
+			<div class="main">
+				<div class="box sidebar">左侧栏</div>
+				<div class="box content">主体内容</div>
+				<div class="box sidebar">有侧栏</div>
+			</div>
+			<div class="footer">页脚底部</div>
+		</div>
+
+	</body>
+
+</html>

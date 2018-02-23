@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+	</head>
+	<style>
+		.user_info{
+			height: 50px;
+			line-height: 50px;
+		}
+		.usercode{
+			width:300px !important;
+		}
+		.basic_info,.select_info{
+			padding: 0px;
+			border-top: 1px solid #D5D5D5;
+			/*display: none;*/
+		}
+		.note{
+			width: auto;
+			height: 70px;
+			line-height: 70px;
+			float: left;
+			margin-right: 20px;
+		}
+		.note_info{
+			display: inline-block;
+			width: 200px;
+			height: 70px;
+			overflow-y:auto ;
+			border: 1px solid #D5D5D5;
+			float: left;
+			resize: none;
+		}
+		input{
+			width: auto;
+			height: 34px;
+		    padding: 6px 12px;
+		    font-size: 14px;
+		    line-height: 1.42857143;
+		    color: #555;
+		    background-color: #fff;
+		    background-image: none;
+		    border: 1px solid #ccc;
+		    border-radius: 4px;
+		}
+		.info_title{
+			width:140px;
+			text-align:right;
+			margin-right:10px;
+		}
+	</style>
+	<body>
+		<div id="customerBasic">
+			<form class="form-inline col-sm-12 col-xs-12" action=""  dt_target=""  method="POST">
+				<div class="user_info col-sm-12 col-xs-12">
+			        <label for="usercode" class="info_title">客户编号</label>
+			        <input type="" class="info usercode" placeholder="" onblur="show()"/>
+			        <input type="hidden" id="controller" value="1" />
+			    </div>
+			    <div class="basic_info col-sm-12 col-xs-12">
+				    <div class="user_info col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">被保险姓名</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div> 
+				    <div class="user_info col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">身份证号</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div>
+				     <div class="user_info col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">银行证号/一卡通号</label>
+				        <input type="text" class="info " placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div> 
+				    <div class="user_info col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">开户行</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div> 
+				     <div class="user_info col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">行政区划</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div>
+				    <div class="user_info col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">被保人地址</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div> 
+			    </div>
+			    <div class="select_info col-sm-12 col-xs-12">
+				    <div class="user_info insured_area  col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">保险投保面积(亩)</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div> 
+				    <div class="user_info insured_num col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">农户饲养数量(头、只)</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div>
+				     <div class="user_info special_num col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">耳标号</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div> 
+				    <div class="user_info  telephone col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">联系电话</label>
+				        <input type="text" class="info " placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div> 
+			    </div>
+			     <div class="basic_info col-sm-12 col-xs-12">
+				    <div class="user_info col-sm-6 col-xs-12" >
+				        <label for="usercode" class="info_title">单位保险金额</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div> 
+				    <div class="user_info col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">保险金额</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div>
+				     <div class="user_info col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">保险费</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div> 
+				    <div class="user_info col-sm-6 col-xs-12">
+				        <label for="usercode" class="info_title">自缴金额</label>
+				        <input type="text" class="info" placeholder=""  onkeypress="if(event.keyCode==13) focusNextInput(this);"/>
+				    </div>
+				    <div class="col-sm-6 col-xs-12" style="margin-left: 105px;">
+				        <label class="note">备注</label>
+				        <textarea class="note_info info"  onkeypress="if(event.keyCode==13) focusNextInput(this);"></textarea>
+				    </div>
+				    <div class="col-sm-12 col-xs-12" style="text-align: center;" >
+				    	<button  class="btn btn-primary">保存</button>
+				    </div>
+			    </div>
+			</form>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+	<script type="text/javascript" src="js/bootstrap/bootstrap.js" ></script>
+	<script>
+		function show(){
+			var category = $("#controller").attr("value");
+//			只显示种植1  只显示林业1 只显示养殖2
+			if(category=="1"){
+				$(".select_info .insured_num,.select_info .special_num ").remove();
+			}else if(category=="2"){
+				$(".select_info .insured_area").remove();
+			}
+			$(".basic_info,.select_info").css({"display":"block"});
+		}
+//	按下enter,光标自动跳转
+    $(function () {
+        $('#customerBasic').find(".info").eq(1).focus();//直接定位到当前页面的第一个文本框
+	    var $inp = $('.info');//所有文本框
+	    console.log($inp);
+	    $inp.bind('keydown', function (e) {
+	        var key = e.which;
+	        if (key == 13) {
+	            e.preventDefault();
+	            console.log("下标",$inp.index(this))
+	            var nxtIdx = $inp.index(this)+1;
+	            //$(":input:text:eq(" + nxtIdx + ")").focus();
+	            $($inp[nxtIdx]).focus();
+	        }
+	    });
+	});
+	</script>
+</html>

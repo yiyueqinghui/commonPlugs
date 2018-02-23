@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>字符串类型与日期类型间的相互转化</title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var time = "2017-08-09";
+		//Date.parse(时间格式的字符串)   转化为相应时间的时间戳（数字类型）
+		var time01 = Date.parse(time); 
+		console.log(time01);
+		//new Date(时间戳)    转化为相应的日期（日期类型）
+		var times =new Date(Date.parse(time));  
+//		变量.constructor 返回变量的构造函数(函数类型) 可用来查看变量的类型,比如说为数组/日期等 
+		console.log(times.constructor);
+//		通过字符串截取,获取到相应的类型字符
+		console.log(times.constructor.toString().split("()")[0].split(" ")[1]);
+	</script>
+</html>
