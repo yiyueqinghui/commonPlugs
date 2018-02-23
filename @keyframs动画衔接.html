@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="@my_programmer">
+		<title>webkitAnimationEnd</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="format-detection" content="telephone=no" />
+		<style type="text/css">
+			#div {
+				width: 200px;
+				height: 200px;
+				background: #f60;
+				margin: 100px auto;
+			}
+			
+			.fade {
+				-webkit-animation: fadeOut 2s 1 ease-in-out;
+			}
+			
+			.change {
+				-webkit-animation: transform 2s ease;
+			}
+			
+			@-webkit-keyframes fadeOut {
+				/*淡出*/
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			
+			@-webkit-keyframes transform {
+				/*放大缩小*/
+				0% {
+					-webkit-transform: rotateY(45deg)
+				}
+				33% {
+					-webkit-transform: rotateY(90deg)
+				}
+				66% {
+					-webkit-transform: rotateY(135deg)
+				}
+				100% {
+					-webkit-transform: rotateY(180deg)
+				}
+				
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="div" class="fade"></div>
+
+		<script type="text/javascript">
+			var tt = document.querySelector('#div');
+			tt.addEventListener("webkitAnimationEnd", function() { //动画结束时事件 
+				this.className = 'change';
+				console.log(2);
+			}, false);
+		</script>
+	</body>
+
+</html>

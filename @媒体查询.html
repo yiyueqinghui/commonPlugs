@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width initial-scale=1,maximun-scale=1,user-scalable=no" />
+		<title>@media媒体查询</title>
+	</head>
+	<style>
+	/*根据屏幕的不同宽带设计相应的样式*/
+      @media only screen and (min-width:640px) {
+ 	        body{
+ 	        	background-color: red;
+ 	        }
+ 	        div{
+ 	        	font-size: 20px;
+ 	        	color:black;
+ 	        }
+       }	
+	  
+	   @media only screen and (min-width: 320px) and (max-width:640px) {
+	   	    body{
+	   	    	background-color:blue;
+	   	    }
+	   	    div{
+	   	    	font-size: 15px;
+	   	    	color: green;
+	   	    }
+	   }
+	   @media only screen and (max-width:320px ) {
+	   	    body{
+	   	    	background-color: gray;
+	   	    }
+	   	    div{
+	   	    	font-size: 12px;
+	   	    	color: red;
+	   	    }
+	   }
+	</style>
+	<body>
+		<div>
+		    tianxiashiwomende;
+		</div>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>居中布局</title>
+	</head>
+	<style>
+/*方法一   text-align + inline-block*/
+      /*可兼容到ie8,对于ie567不支持inline-block,需要使用hack进行兼容*/
+		#parent{
+			text-align: center;
+		}
+		.childOne{
+			width: 30vw;
+			height: 10vh;
+			background-color: #000000;
+			color: #FFFFFF;
+			display: inline-block;               
+		}
+		
+  /*方法二  table + margin*/
+       /*可兼容到ie8*/
+      .childOne02{
+      	   width: 30vw;
+		   height: 10vh;
+		   background-color: #000000;
+		   color: #FFFFFF;
+      	   display: table;
+      	   margin: 0 auto;
+      }
+      
+    /*方法三  absolute + transform*/
+          /*由于transform的限制,兼容到ie9;如果子元素确定宽度,则可使用margin-left:-1/2宽度,这样兼容性极好*/
+       #parent03{
+			position: relative;
+			height: 10vh;
+		}
+	   .childOne03{
+			width: 30vw;
+			height: 10vh;
+			background-color: #000000;
+			color: #FFFFFF;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            /*margin-left:-15vw;*/
+		}
+		
+		
+	/*方法四  flex + justify-content*/	
+		#parent04{
+			display: flex;
+			justify-content: center;
+		}
+		.childOne04{
+			width: 30vw;
+			height: 10vh;
+			background-color: #000000;
+			color: #FFFFFF;
+		}
+      
+	</style>
+	<body>
+		<div id="parent">
+			<div class="childOne">方法一</div>
+		</div>
+		<br />
+		
+		<div class="childOne02">方法二</div>
+		<br />
+		
+		<div id="parent03">
+			<div class="childOne03">方法三</div>
+		</div>
+		<br />
+		
+		<div id="parent04">
+			<div class="childOne04">方法四</div>
+		</div>
+		<br />
+	</body>
+</html>

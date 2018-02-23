@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>垂直居中</title>
+	</head>
+	<style>
+	 /*方法一 table-cell + vertial-align,子元素垂直居中*/
+		.parent{
+			width:50vw;
+			height:10vh;
+			background-color:gray;
+			color: #FFFFFF;
+			display: table-cell;
+			vertical-align: middle;
+		}
+		.child{
+			width:50vw;
+			height:5vh;
+			background-color:red;
+		}
+		
+	 /*方法二 absolute + transform*/
+	    .parent02{
+			width:50vw;
+			height:10vh;
+			background-color:gray;
+			color: #FFFFFF;
+			position: relative;
+		}
+		.child02{
+			width:50vw;
+			height:5vh;
+			background-color:red;
+			position: absolute;
+			top:50%;
+			transform: translateY(-50%);
+		}	
+		
+	/*方法三  flex + align-items*/
+	    .parent03{
+			width:50vw;
+			height:10vh;
+			background-color:gray;
+			color: #FFFFFF;
+			display: flex;
+			align-items: center;
+		}
+		.child03{
+			width:50vw;
+			height:5vh;
+			background-color:red;
+		}	
+	</style>
+	<body>
+		<div class="parent">
+			<div class="child">demo</div>
+		</div>
+		<br />
+		
+		<div class="parent02">
+			<div class="child02">demo</div>
+		</div>
+		<br />
+		
+		<div class="parent03">
+			<div class="child03">demo</div>
+		</div>
+	</body>
+</html>
