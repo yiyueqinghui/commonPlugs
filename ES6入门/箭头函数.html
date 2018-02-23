@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>箭头函数</title>
+	</head>
+	<body>
+		<div id="app">
+		   
+		</div>
+        
+	</body>
+	<script>
+      //es5函数定义与调用
+	  var show = function(){
+        console.log(12);    
+	  };
+	  show();   
+		
+	 //es6函数定义与调用
+	  const show02 = () =>{
+        console.log(122);    
+      };
+      show02();  // 122 
+	  //个人理解：这里将function关键字去掉然后在“()”后面加一个“=>”
+	  
+	  
+	  
+	  <!-- a) 函数有返回值 -->
+	   //es5写法
+	    var sum = function(a,b){
+			return a+b;
+		}
+		console.log(sum(12,5));
+	    
+	   
+	   //es6写法
+	   let sum02 = (a,b) => {
+		   return a+b;
+	   }
+	   console.log(sum02(1,2));
+	   
+	   
+	   
+	   
+	   <!-- b) 参数是1个 -->
+	   // var show = function(a){ return 'welcome'}
+	   //相当于   省略括号
+        var show04 = (a) => {
+		    return 'welcome'
+		}
+		console.log(show04(0));
+	   
+	   
+	   <!-- c) 参数是0个 -->
+	     //var show = function(){ return 'welcome'}
+        //相当于   省略括号
+        var show88 = () => {
+		    return 'welcome you!!!'	
+		}
+		console.log(show88());
+	  
+	</script>
+</html>

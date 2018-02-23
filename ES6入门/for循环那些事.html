@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>for循环</title>
+	</head>
+	<body>
+		<div id="app">
+		   
+		</div>
+        
+	</body>
+	<script>
+      <!-- for...in...循环 -->
+	     //循环数组
+        let arr = [12,5,8];
+		for(let i = 0;i<arr.length;i++){
+			console.log(i);    //0 1  2
+			console.log(arr[i]);  //12  5  8
+		}
+		console.log('------------------');
+
+		let arr02 = [12,5,8];
+		for(let i in arr02){
+			console.log(i);      //0 1  2
+			console.log(arr02[i]);  //12  5  8
+		}	 
+		console.log('------------------');
+		
+		  //循环json数据
+		let json = {a:12,b:5,c:8};
+		for(let name in json){
+			console.log(name);  //a  b c
+			console.log(json[name]);  //12 5 8
+		}
+		console.log('------------------');
+		
+		
+		<!-- for ... of ...循环    无法循环json数据 -->
+		   //循环数组
+		let arr04 = [12,5,8];
+		for(let name of arr04){
+			console.log(name);  // 12 5 8
+		}
+		console.log('------------------');
+		
+		  //循环json数据   (报错,因为不能用for ...of...来循环json数据)
+		<!-- let json02 = {a:'apple',b:'banana'}; -->
+		<!-- for(let name of json02){ -->
+			<!-- console.log(name); -->
+		<!-- } -->
+		<!-- console.log('------------------'); -->
+		
+		 
+		 <!-- 删除json的某一条数据 -->
+		let json03 = {a:12,b:5};
+		delete json03.a;
+		console.log(json03);     // b:5
+		
+		
+		
+		
+		
+		
+		
+	</script>
+</html>

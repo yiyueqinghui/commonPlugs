@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>promise用法</title>
+</head>
+<body>
+    <h4>
+	  Promise是一个构造函数，用来执行异步操作。
+	自己身上有all、reject、resolve这几个眼熟的方法，
+	原型上有then、catch等同样很眼熟的方法。
+	</h4>
+	
+	<h4 style="margin-top:20px;">
+	  Javascript语言的执行环境是"单线程"（single thread）<br/>   
+	  同步模式：后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的、同步的 <br/>  "异步模式：每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结束就执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的 <br/>
+	  "异步模式"非常重要。在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，"异步模式"甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。
+	</h4>
+
+
+</body>
+<script>
+    console.dir(Promise);
+	
+	<!-- resolve用法  （ “成功回调”的执行 ） -->
+    function run(){
+	   var p = new Promise(function(resolve,reject){
+	       setTimeout(function(){
+			  console.log('执行完成111');
+			  resolve('数据111');
+		   
+		   },2000);
+	   
+	   })
+	   
+	   return p;
+	}
+	
+	function run01(){
+	   var p = new Promise(function(resolve,reject){
+	       setTimeout(function(){
+			  console.log('执行完成222');
+			  resolve('数据222');
+		   
+		   },3000);
+	   
+	   })
+	    return p;
+	}
+	
+	function run02(){
+	   var p = new Promise(function(resolve,reject){
+	       setTimeout(function(){
+			  resolve('数据333');       
+			  //注意，这里的resolve函数是在这个区域中的所有的代码执行完成后才执行resolve;
+			  
+			  console.log('执行完成333');
+			  
+		   },1000);
+	   
+	   })
+	    return p;
+	}
+	
+	
+	
+//	在then方法中，你也可以直接return数据而不是Promise对象，
+//  在后面的then中就可以接收到数据
+
+	<!-- run().then(function(data){ -->
+	     <!-- console.log(data); -->
+		 <!-- return run01(); -->
+	<!-- }).then(function(data){ -->
+	     <!-- console.log(data); -->
+		 <!-- return '到此结束！！'; -->
+		
+	<!-- }).then(function(data){ -->
+	     <!-- console.log(data); -->
+	     
+	<!-- })  -->
+	
+	
+	
+	
+	<!-- run().then(function(data){ -->
+	     <!-- console.log(data); -->
+		 <!-- return run01(); -->
+	<!-- }).then(function(data){ -->
+	     <!-- console.log(data); -->
+		 <!-- return run02(); -->
+		
+	<!-- }).then(function(data){ -->
+	     <!-- console.log(data); -->
+	     
+	<!-- }) -->
+	
+<!-- 我们前面的例子都是只有“执行成功”的回调，还没有“失败”的情况，reject的作用就是把Promise的状态置为rejected，这样我们在 then中就能捕捉到，然后执行“失败”情况的回调
+ -->
+	<!-- reject的用法  （“失败”情况的回调） -->
+	
+	function getNumber(){
+	    var p = new Promise(function(resolve,reject){
+		   //执行一些异步操作
+		   setTimeout(function(){
+		      var num = Math.ceil(Math.random()*10);
+			  if(num<5){
+			     resolve(num);
+			  }else{
+			     reject('数字太大了');
+			  }
+		   },2001)
+		});
+		console.log(p);
+		return p;
+		 
+	}
+	
+	<!-- getNumber().then( -->
+	    <!-- function(data){ -->
+		   <!-- console.log('resolved'); -->
+		   <!-- console.log(data);		 -->
+		<!-- }, -->
+		<!-- function(data){ -->
+		    <!-- console.log('rejected'); -->
+			<!-- console.log(data); -->
+		
+		<!-- } -->
+
+	<!-- ) -->
+	
+	
+	<!--Promise的all方法提供了并行执行异步操作的能力，并且在所有异步操作执行完后才执行回调。我们仍旧使用上面定义好的runAsync1、runAsync2、runAsync3这三个函数-->
+	
+	<!-- all (提供了并行执行异步操作的能力) -->
+	
+	Promise.all([run01(),run02()]).then(function(results){
+	    console.log(results);
+	});
+	
+	<!--详细解读：  用Promise.all来执行，all接收一个数组参数，里面的值最终都算返回Promise对象。这样，两个异步操作的并行执行的，等到它们都执行完后才会进到then里面。那么，两个异步操作返回的数据哪里去了呢？都在then里面呢，all会把所有异步操作的结果放进一个数组中传给then，就是上面的results。
+	-->
+	
+	
+	<!-- all方法的效果实际上是「谁跑的慢，以谁为准执行回调」，那么相对的就有另一个方法「谁跑的快，以谁为准执行回调」，这就是race方法，这个词本来就是赛跑的意思。race的用法与all一样，我们把上面run02的延时改为1秒来看一下： -->
+	
+	<!-- race -->
+	
+	Promise.race([run(),run01(),run02()])
+	.then(function(results){
+	     console.log(results);
+	})
+	
+
+
+</script>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>定义变量const和let</title>
+	</head>
+	<body>
+		<div id="app">
+		   <h3>var 方式定义变量有啥 bug ？</h3>
+		   <p>1,Js没有块级作用域</p>
+		   <p>2,循环内变量过度共享</p>
+		   
+		   
+		   <h3>let定义变量与var的区别及注意事项</h3>
+		   <p>
+		       区别一 <br/>
+			   <b>let声明的变量拥有块级作用域</b>
+			   let声明的变量的作用域只是外层代码块，而不是整个外层函数。
+		   </p>
+		   <p>
+		       区别二 <br/>
+			   <b>let声明的全局变量不是全局对象的属性</b>
+			   这就意味着，你不可以通过window.变量名的方式访问这些变量。
+			   它们只存在于其作用域中（代码块）
+		   </p>
+		   <p>
+		       区别三 <br/>
+			   <b>形如for (let x...)的循环在每次迭代时都为x创建新的绑定</b>
+			   具体例子参照 <a style="color:red">bug2:  循环内var变量过度共享</a>
+		   </p>
+		   <p>
+		       区别四 <br/>
+			   <b>用let重定义变量会抛出一个语法错误，而var不会，只是覆盖原先的值</b>
+		   </p>
+		   
+		   
+		   <h3>var let const 初略理解</h3>
+		   <table>
+		      <tr>
+			     <td>使用var声明的变量</td>
+				 <td>其作用域为该语句所在的函数内，且存在变量提升现象；</td>
+			  </tr>
+			  <tr>
+			     <td>使用let声明的变量</td>
+				 <td>其作用域为该语句所在的代码块内</td>
+			  </tr>
+			  <tr>
+			     <td>使用const声明的是常量</td>
+				 <td>在后面出现的代码中不能再修改该常量的值</td>
+			  </tr>
+		   </table>
+		</div>
+        
+	</body>
+	<script>
+<!-- var 方式定义变量有啥 bug ？ -->
+		   <!-- bug1:  Js没有块级作用域，在JS函数中的var声明，其作用域是整个函数体 -->
+		   for(var i=0;i<10;i++){
+			  var a = 'aaaaaa';
+		   }
+		   console.log(a);
+		   
+		   console.log('-------------');
+		   for(var i=0;i<10;i++){
+			  let b = 'aaaaaa';
+		   }
+		   console.log(typeof b);
+		   //明明已经跳出 for 循环了，却还可以访问到 for 循环内定义的变量 a ，甚至连 i 都可以被放访问到，尴尬~ 
+			
+		   
+		   
+		   <!--bug2:  循环内var变量过度共享  -->
+		   for(var i=0;i<3;i++){
+			  setTimeout(function(){
+				 console.log(i);
+			  },100);
+		   }
+		   console.log("-------------");
+		   for(let j=0;j<3;j++){
+			  setTimeout(function(){
+				 console.log(j);
+			  },100);
+		   }
+		   
+	</script>
+</html>

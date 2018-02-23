@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> 解构赋值</title>
+	</head>
+	<body>
+		<div id="app">
+		 
+		</div>
+        
+	</body>
+	<script>
+     <!-- 案例一  数组格式的赋值 -->
+	   // let a = 10;
+	   // let b = 100;
+	   // let c = 1000;
+	   // 相等于
+	   let [a,b,c] = [10,100,1000];
+	   console.log(a,b,c);
+		
+	  
+	  <!-- 案例二  json格式的赋值 -->
+	  let {e,f,g} = {e:5,f:"aaa",g:true};
+	  console.log(e,f,g);
+	  
+	  
+	  <!-- 案例三 默认赋值问题 -->
+	  let {time=1000,id=0} = {id:1};
+	  console.log(time,id);
+	  
+	  
+	  <!-- 经典案例  解构赋值与顺序无关，与结构有关（左右结构一致）-->
+	  let json = {
+	      q:'aaaaaa',
+		  p:true,
+		  s:['阿里云','www.baidu.com','QQ']
+	  }
+	  let {s,q} = json;
+	  console.log(s);
+	  console.log(q);
+	</script>
+</html>

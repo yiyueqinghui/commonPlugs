@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>神奇的“三个点”</title>
+	</head>
+	<body>
+		<div id="app">
+		    
+		</div>
+        
+	</body>
+	<script>
+<!-- 深浅拷贝问题 -->
+	  //浅拷贝数组(常规的操作)   改变一个，另一个也会改变
+	    var arr =[1,3,5];
+		arr2 = arr;
+		arr2.pop();
+		console.log(arr2,arr);        
+		console.log('-----------');
+		//上面的代码就是arr2与arr公用一段内存地址，所以导致srr2数据改变的时候arr也必然会变的。这就是浅拷贝。
+		
+		
+	  //深度拷贝数组方式          彼此互不干扰
+	  //方式一：利用for循环把原数组的每一项都遍历，然后扔到新的数组中。
+	    var arr01 = [12,5,8,10];
+		var arr02 =[];
+		for(var i=0;i<arr01.length;i++){
+		   arr02.push(arr01[i]);
+		}
+		arr02.pop();
+		console.log(arr02,arr01);
+	  
+	   //方式二：利用Array.from(原数组);
+	   var arr04 = [12,5,8,10];
+	   var arr05 = Array.from(arr04);
+	   arr05.pop();
+	   console.log(arr05,arr04);
+	   
+	   //方式三：神奇的“三个点”
+	   var arr08 = [12,5,8,10];
+	   var arr09 = [...arr08];
+	   arr09.pop();
+	   console.log(arr09,arr08);
+	   console.log('---------------');
+		
+		
+		
+	<!-- 神奇的“三个点”用在函数的参数上 -->
+	  //我们知道函数的参数是一个集合(arguments)并不是一个真正的数组。那么我们怎么才能在这个arguments中加一项呢？？
+	   function show(...arrs){      //...arrs表示参数的集合,类似于arguments,但其可以增减参数
+	      arrs.push(8);
+		  console.log(arrs);
+	   }
+	   
+	   show(12,1,3);
+	</script>
+</html>

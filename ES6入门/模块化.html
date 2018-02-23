@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		   <p style="color:red;">
+		     目前还没有浏览器支持模块化(需要引入traceur.js和bootstrap.js)
+		   </p>
+		   <ul>
+		      <li>
+			      a).导出，将变量a“暴露”出去
+					const a =12;
+					export default a;
+			  </li>
+			  <li>
+			      b).导入1.js文件“暴露”的东西，并用modA 接收
+                    import modA from './1.js'; (./代表同级目录下)
+			  </li>
+			  <li>
+			      c).同一个模块导出多个值 export default {a:12,b:5};
+			  </li>
+			  <li>
+			      d).不同模块间的引入
+					import modA from './mod1.js';
+					import modB from './mod2.js';
+					let sum = modA+modB;
+					export default sum;			  
+			  </li>
+		   </ul>
+		   
+		</div>
+        
+	</body>
+	
+	<script type="module">
+       <!-- <script src="js/traceur.js"></script>
+	<script src="js/bootstrap.js"></script> -->
+		 import modeA from './js/1.js';
+		 import modeB from './js/2.js';
+		
+		 console.log(modeA);
+		
+		
+		
+	</script>
+</html>
