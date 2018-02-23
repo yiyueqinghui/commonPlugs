@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>模态框组件开发</title>
+		<!--第一步-->
+		<link rel="stylesheet" href="css/modal.css" />
+	</head>
+	<body>
+		<input type="button" value="打开模态框" />
+		
+		<!--第三步-->
+		<div id="my-modal"></div>
+		<!--模态框遮罩层-->
+		<!--<div class="modal-mask">
+			<div class="modal-content">
+				<div class="modal-header">温馨提示</div>
+				<div class="modal-body">你确定要删除这条商品记录吗</div>
+				<div class="modal-footer">
+					<button>确定</but$ton>
+					<button>取消</button>
+				</div>
+			</div>
+		</div>-->
+		<!--第二步-->
+		<script src="js/jquery-1.11.3.js"></script>
+		<script src="js/modal.js"></script>
+		<script>
+//			第四步：插件的初始化
+			$('input[type=button]').click(function(){
+				$('#my-modal').myModal({
+					title:'爱的箴言',
+					contents:'人一生中最重要的是家人，在这里就现在 ，祝家人永远健康快乐！',
+					buttons:[
+						{
+							text:'朕知道了',
+							callback:function(){
+								console.log('点击确定的回调')
+								console.log('正在删除数据。。。');
+								setTimeout(function(){
+									$.closeModal();//关闭模态框
+								},1000)
+								
+							}
+						},
+						{
+							text:'你好烦啊'
+						}
+					]
+				});
+			})
+		</script>
+	</body>
+</html>

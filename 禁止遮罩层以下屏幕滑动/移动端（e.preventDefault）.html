@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+ 
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <title>遮罩层禁止屏幕滚动  e.preventDefault</title>
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <style type="text/css">
+            * {
+                padding: 0px;
+                margin: 0px;
+            }
+             
+            body {
+                height: 1000px;
+            }
+            p{
+            	height: 100px;
+            	line-height: 100px;
+            }
+             
+            #mask {
+                width: 100%;
+                height: 100%;  
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                background: rgba(0, 0, 0, 0.7);
+                display: none;
+            }
+        </style>
+        <script type="text/javascript">
+            $(function() {
+                /* 第一种方法：屏蔽鼠标滚轮滚动和touchmove事件，比较暴力
+                $("p").click(function() {
+                    $("#mask").show(0,function(){
+                         $("body").css('overflow','hidden');
+                    });
+                })
+                $("#mask").click(function() {
+                    $("#mask").hide(0,function(){
+                        $("body").css('overflow','scroll');
+                    });
+                })
+                */
+                //第二种方法[推荐]，屏蔽触屏滑动事件，但是没有屏蔽鼠标滚轮滚动
+                $("p").click(function() {
+                    $("#mask").show()
+                });
+                $("#mask").click(function() {
+                    $("#mask").hide()
+                });
+                $("#mask").on('touchmove',function(e){
+                    e.preventDefault();  //阻止默认行为
+                })
+               
+ 
+            })
+        </script>
+    </head>
+ 
+    <body>
+        <!--遮罩层-->
+        <div id="mask">
+          
+        </div>
+        <!--主体内容-->
+        <p>111111111111111111111</p>
+        <p>222222222222222222222</p>
+        <p>333333333333333333333</p>
+        <p>111111111111111111111</p>
+        <p>222222222222222222222</p>
+        <p>333333333333333333333</p>
+        <p>111111111111111111111</p>
+        <p>222222222222222222222</p>
+        <p>333333333333333333333</p>
+        <p>111111111111111111111</p>
+        <p>222222222222222222222</p>
+    </body>
+ 
+</html>

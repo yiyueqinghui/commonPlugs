@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>模态框</title>
+		<link rel="stylesheet" href="css/modal.css" />
+	</head>
+	<body>
+		<input type="button" id="btn" value="打开模态框"/>
+		<!--3.-->
+		<div id="modal"></div>
+		<!--2.-->
+		<script src="js/jquery-1.11.3.js"></script>
+		<script src="js/modal.js"></script>
+		<script>
+//			
+			$('#btn').click(function(){
+//				4.初始化
+				$('#modal').myModal({
+					title:'爱的箴言',
+					contents:'人一生中最重要的是家人，在这里就现在 ，祝家人永远健康快乐！',
+					buttons:[
+						{
+							text:'朕知道了',
+							callback:function(){
+								$.closeModal();//关闭窗口
+							}
+						},
+						{
+							text:'你好烦啊',
+							callback:function(){
+								$.closeModal();//关闭窗口
+							}
+						},
+					]
+				});
+			})
+			
+		</script>
+	</body>
+</html>

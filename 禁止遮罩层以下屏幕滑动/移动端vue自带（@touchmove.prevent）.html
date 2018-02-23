@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue之遮罩层禁止屏幕滚动 @touchmove.prevent</title>
+	</head>
+	<style>
+	    body,html {
+		  width:100%;
+		  height:100%;
+	    }
+        h1{
+		  margin-top:10rem;
+		}
+		  
+       .layer{
+	      width:100%;
+	   /*这里的100%,是父级高度的100%,由于它是fixed定位,也就是ul的高度;*/
+		  height:100%;   
+		  position:fixed;
+		  top:0;
+		  left:0;
+		  z-index:99;
+		  background:rgba(0,0,0,.5);
+		}
+	
+	</style>
+	<body>
+		<!--注意：只有在移动端时才有效果-->
+		<div id="counter-event-example">
+			 <div>
+				 <ul @click="change">
+					 <li v-for="item in list">
+						 <h1>{{item}}</h1>
+					 </li>
+				 </ul>
+				 <div @touchmove.prevent @scroll.prevent :class="{layer:bol}"  @click="change"></div>
+			 </div>
+		
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el: '#counter-event-example',
+			data: {
+				list : [1,2,3,4,5,6,7,8,9,10],
+				bol:false
+			},
+			methods:{
+			     change(){
+			     	this.bol = !this.bol;
+			     }
+			}
+		})
+	</script>
+
+</html>

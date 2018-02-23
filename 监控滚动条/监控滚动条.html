@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>监控滚动条</title>
+	</head>
+	<style>
+		#container{
+			width:100%;
+			max-width: 680px;
+			margin: 0 auto;
+			height:2000px;
+			background-color: darkgray;
+		}
+		#collapse{
+			width:100%;
+			max-width:680px;
+			height:100px;
+			background-color: red;
+			position: fixed;
+			top: 0;
+			left:0;
+			right:0;
+			margin:0 auto;
+		}
+	</style>
+	<body>
+		<div id="container">
+		   <div id="collapse"></div>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+	<script>
+		 // 滑动滚动条
+		$(window).scroll(function(){
+			console.log($(window).scrollTop());
+		// 滚动条距离顶部的距离 大于 200px时
+			if($(window).scrollTop() >= 100){
+				$("#collapse").fadeOut(100); // 开始淡入
+			} else{
+			    $("#collapse").stop(true,true).fadeIn(100); // 如果小于等于 200 淡出
+			}
+		});
+	</script>
+</html>
